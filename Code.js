@@ -57,8 +57,17 @@ function myFunction() {
         break;
       }
       firstName += fullNames[i][j];
-      firstNames.push(firstName);
     }
+    firstNames.push(firstName);
+  }
+  if (firstNames.length > 2) {
+    const name = sheet.getRange(row, 1).getValue() + " Team";
+  }
+  else if (firstNames.length == 1) {
+    const name = firstNames[0] + " and " + firstNames[1];
+  }
+  else {
+    const name = firstNames[0];
   }
 
 
