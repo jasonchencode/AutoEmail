@@ -1,3 +1,5 @@
+const dataArray =[];
+
 function myFunction() {
   // initialize
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -37,9 +39,10 @@ function myFunction() {
    * Insert formatted Date
    * 
    */
-  const today = new Date();
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
   const timeZone = Session.getScriptTimeZone();
-  const formattedDate = Utilities.formatDate(today, timeZone, "MM/dd/yyyy"); 
+  const formattedDate = Utilities.formatDate(tomorrow, timeZone, "MM/dd/yyyy"); 
   sheet.getRange(row, 4).setValue(formattedDate);
   
   /** Contact Name(s)
@@ -60,18 +63,38 @@ function myFunction() {
     }
     firstNames.push(firstName);
   }
+
+  let referName;
   if (firstNames.length > 2) {
-    const name = sheet.getRange(row, 1).getValue() + " Team";
+    referName = sheet.getRange(row, 1).getValue() + " Team";
   }
-  else if (firstNames.length == 1) {
-    const name = firstNames[0] + " and " + firstNames[1];
+  else if (firstNames.length == 2) {
+    referName = firstNames[0] + " and " + firstNames[1];
   }
   else {
-    const name = firstNames[0];
+    referName = firstNames[0];
   }
 
-
-
+  /** Email(s)
+   * 
+   * 
+   */
+  emailValue = sheet.getRange(row, 6).getValue();
+  const emails = contact.split("\n");
   
-  Logger.log(firstNames[1]);
+  /** Object
+   * 
+   * 
+   */
+  const dataInfo = {
+    companyName: sheet.getRange(row, 1).getValue(),
+    status: "Awaiting Response",
+    user: userInputText,
+    date: formattedDate,
+    contactNames: firstNames,
+    referContact: referName
+  };
+
+  const jsonString = JSON.stringify(dataInfo, null, 2);
+  Logger.log(jsonString);
 }
