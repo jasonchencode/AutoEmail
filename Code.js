@@ -1,4 +1,4 @@
-const dataArray =[];
+const dataArray = [];
 
 function myFunction() {
   // initialize
@@ -79,8 +79,8 @@ function myFunction() {
    * 
    * 
    */
-  emailValue = sheet.getRange(row, 6).getValue();
-  const emails = contact.split("\n");
+  const emailValue = sheet.getRange(row, 6).getValue();
+  const emails = emailValue.split("\n");
   
   /** Object
    * 
@@ -92,6 +92,7 @@ function myFunction() {
     user: userInputText,
     date: formattedDate,
     contactNames: firstNames,
+    contactEmails: emails,
     referContact: referName
   };
 
