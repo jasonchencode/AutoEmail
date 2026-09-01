@@ -6,9 +6,8 @@ load_dotenv()
 
 exa = Exa(os.getenv("EXA_API_KEY"))
 
-all_research = {}
-
 def research_efficient(company):
+    all_research = {}
     queries = {
         "recent": f"""
             What is the most recent notable development at {company} that would make a good personalized opening for a sponsorship outreach email?
@@ -44,8 +43,10 @@ def research_efficient(company):
                 "highlight": r.highlights[0] if r.highlights else "" # in case there are no valid highlights
             }
             for r in results.results
-        ]   
+        ]
+
+    return all_research
 research_efficient("Ada CX")
-print(all_research)
+
 # category: "company",
 # results for queries: 5, 5, 3, 3
