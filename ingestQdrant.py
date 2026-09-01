@@ -4,7 +4,10 @@ from sentence_transformers import SentenceTransformer
 
 from defaultQdrant import email_examples
 
-client = QdrantClient(host="localhost", port=6333)
+client = QdrantClient(
+    host="localhost", 
+    port=6333
+)
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
@@ -14,7 +17,7 @@ def initialize_collection():
     # Create a persistent collection if it doesn't already exist
     if not client.collection_exists(COLLECTION_NAME):
         client.create_collection(
-            collection_name="email_examples",
+            collection_name=COLLECTION_NAME,
             vectors_config=VectorParams(
                 size=384,
                 distance=Distance.COSINE
@@ -41,13 +44,17 @@ def ingest_examples():
         )
 
     client.upsert(
-        collection_name="email_examples",
+        collection_name=COLLECTION_NAME,
         points=points
     )
 
     print(f"Added {len(points)} examples to Qdrant")
 
 
+
+"""
+To be ran only once, when defaultQdrant.py is updated
+"""
 if __name__ == "__main__":
     initialize_collection()
     ingest_examples()
