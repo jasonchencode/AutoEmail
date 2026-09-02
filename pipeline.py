@@ -1,5 +1,6 @@
 from search_exa import research_efficient
 from qdrant_service import retrieve_email_examples
+from llm_service import identify_sponsorship_angle, generate_email
 
 def run_pipeline(data):
     company = data["companyName"]
@@ -10,7 +11,7 @@ def run_pipeline(data):
     print(len(research))
 
     # 2. Identify Sponsorship Angle
-    angle = "" # placeholder
+    angle = identify_sponsorship_angle(company, research)
 
     # 3. Qdrant RAG
     examples = retrieve_email_examples(angle, limit=5)
