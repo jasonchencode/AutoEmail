@@ -1,6 +1,21 @@
 const dataArray = [];
 
 function myFunction() {
+  /*
+  Returns: ex.
+  {
+    "companyName": "Amazon",
+    "status": "Awaiting Response",
+    "user": "Jason",
+    "date": "09/03/2026",
+    "contactNames": [
+      "Jayson"
+    ],
+    "referContact": "Jason"
+  }
+  
+  */
+
   // initialize
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   const cell = sheet.getCurrentCell();
