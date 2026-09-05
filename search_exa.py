@@ -7,6 +7,51 @@ load_dotenv()
 exa = Exa(os.getenv("EXA_API_KEY"))
 
 def research_efficient(company):
+    """
+    Returns: ex. 
+    {'recent': [{
+            'title':
+            'url':
+            'highlight':
+        },
+        {
+            'title': 
+            'url':
+            'highlight':
+        }],
+    'technical fit': [{
+            'title':
+            'url':
+            'highlight':       
+        },
+        {
+            'title':
+            'url':
+            'highlight':
+        }],
+    'hackathon': [{
+            'title':
+            'url':
+            'highlight':
+        },
+        {
+            'title':
+            'url':
+            'highlight':
+        }],
+    'student': [{
+            'title':
+            'url':
+            'highlight':
+        },
+        {
+            'title':
+            'url':
+            'highlight':
+        }]
+    }  
+    """
+
     all_research = {}
     queries = {
         "recent": f"""
@@ -46,7 +91,3 @@ def research_efficient(company):
         ]
 
     return all_research
-research_efficient("Ada CX")
-
-# category: "company",
-# results for queries: 5, 5, 3, 3
