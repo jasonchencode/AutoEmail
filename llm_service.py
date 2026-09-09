@@ -2,9 +2,11 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
+load_dotenv()
+
 client = OpenAI(
     api_key = os.getenv("GROQ_API_KEY"),
-    base_url = "https://groq.com/openai/v1"
+    base_url = "https://api.groq.com/openai/v1"
 )
 
 def identify_sponsorship_angle(company, research):
@@ -40,10 +42,9 @@ def identify_sponsorship_angle(company, research):
         model="openai/gpt-oss-20b"
     )
 
-    return response
+    return response.output_text
 
 def generate_email(company, contact_name, research, angle, examples):
-    pass
     prompt = f"""
     You are writing a sponsorship outreach email on behalf of QHacks, Queen's University's student-run hackathon.
 
@@ -70,3 +71,11 @@ def generate_email(company, contact_name, research, angle, examples):
     OUTPUT:
     Return only the email body. Do not include a subject line.
     """
+
+    response = client.responses.create(
+        input=prompt,
+        model="openai/gpt-oss-20b"
+    )
+
+    return response.output_text
+
