@@ -44,7 +44,7 @@ def identify_sponsorship_angle(company, research):
 
     return response.output_text
 
-def generate_email(company, contact_name, research, angle, examples):
+def generate_email(company, contact_name, angle, examples):
     prompt = f"""
     You are writing a sponsorship outreach email on behalf of QHacks, Queen's University's student-run hackathon.
 
@@ -52,7 +52,6 @@ def generate_email(company, contact_name, research, angle, examples):
 
     Company: {company}
     Contact: {contact_name}
-    Company Research: {research}
     Identified Sponsorship Angle: {angle}
     Past Email Examples: {examples}
 
@@ -78,4 +77,3 @@ def generate_email(company, contact_name, research, angle, examples):
     )
 
     return response.output_text
-
