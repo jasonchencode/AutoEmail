@@ -34,7 +34,8 @@ def identify_sponsorship_angle(company, research):
     - qhacks_connection
     - confidence
 
-    Return the results as JSON.
+    Return the results as a JSON object.
+    Do not include ```json or any other text.
     """
     
     response = client.responses.create(
@@ -77,3 +78,4 @@ def generate_email(company, contact_name, angle, examples):
     )
 
     return response.output_text
+

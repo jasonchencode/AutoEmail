@@ -10,6 +10,28 @@ client = QdrantClient(
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def retrieve_email_examples(query, limit=2): 
+    """
+    Returns: ex. 
+    {'conventional': 
+    [{
+    'text': ....,
+    'type': 'conventional',
+    'score': 0.5
+    },
+    {
+    'text': ....,
+    'type': 'conventional',
+    'score': 0.4
+    }],
+    'unique': 
+    [{
+    'text': ....,
+    'type': 'unique',
+    'score': 0.6
+    }]
+    }
+
+    """
     query_vector = model.encode(query).tolist()
 
     examples = {}
@@ -31,7 +53,7 @@ def retrieve_email_examples(query, limit=2):
             limit = limit
         )
 
-        examples = [email_type] = []
+        examples[email_type] = []
 
         for result in results.points:
             examples[email_type].append({

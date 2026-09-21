@@ -14,15 +14,23 @@ def run_pipeline(data):
     # 2. Identify Sponsorship Angle
     angle = identify_sponsorship_angle(company, research)
 
+    angle_param = f"""
+        {angle["angle"]}
+        
+        {angle["reasoning"]}
+
+        {angle["qhacks_connection"]}
+        """
+
     # 3. Qdrant RAG
-    examples = retrieve_email_examples(angle, limit=5) # fix parameters
+    examples = retrieve_email_examples(angle_param, limit=2) 
 
     # 4. Generate Email
-    email = generate_email(company, contact_name, angle, examples) # fix parameters as needed
+    email = generate_email(company, contact_name, angle_param, examples) # fix parameters as needed
 
     return {
         "company": company, 
-        "angle": angle, 
+        "angle": angle["angle"], 
         "email": email
     }
 
