@@ -113,4 +113,18 @@ function myFunction() {
 
   const jsonString = JSON.stringify(dataInfo, null, 2);
   Logger.log(jsonString);
+
+  // Send data to Python backend
+  const dataPython = UrlFetchApp.fetch(
+    "placeholder",
+    {
+      method: "post",
+      contentType: "application/json",
+      payload: jsonString
+    }
+  );
+
+  const result = JSON.parse(dataPython.getContentText());
+  Logger.log(result);
+
 }
